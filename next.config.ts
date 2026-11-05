@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   reactStrictMode: true,
   experimental: {
     // Server actions receive CSV payloads during import previews.
