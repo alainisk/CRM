@@ -10,7 +10,7 @@ Preserve the original `MAILBOX_TOKEN_KEY`: stored Gmail refresh tokens are encry
 
 ## Scheduled work
 
-Deploy the same repository as one separate worker, using the same `Dockerfile` with start command `node scripts/railway-scheduler.mjs --daemon`, one replica, no HTTP health check or domain, and serverless sleeping off. Provide `CRM_SCHEDULER_URL` (or `NEXT_PUBLIC_SITE_URL`) and the same scheduled-request secret as the web service. The worker preserves the existing UTC schedules: campaigns each minute, Gmail sync each ten minutes, and birthday reminders at 07:00 daily. Railway's native cron minimum is five minutes, so the worker uses a minute loop.
+Deploy the same repository as one separate worker, using `Dockerfile.scheduler` with start command `node scripts/railway-scheduler.mjs --daemon`, one replica, no HTTP health check or domain, and serverless sleeping off. The small worker image contains only the scheduler script and needs no database credentials or Google tokens. Provide `CRM_SCHEDULER_URL` (or `NEXT_PUBLIC_SITE_URL`) and the same scheduled-request secret as the web service. The worker preserves the existing UTC schedules: campaigns each minute, Gmail sync each ten minutes, and birthday reminders at 07:00 daily. Railway's native cron minimum is five minutes, so the worker uses a minute loop.
 
 Keep `RAILWAY_SCHEDULER_ENABLED=false` until Vercel's cron jobs have been stopped during cutover. Then enable it only on the single worker replica. Never enable both schedulers together. `node scripts/railway-scheduler.mjs --dry-run` lists paths without sending requests.
 
