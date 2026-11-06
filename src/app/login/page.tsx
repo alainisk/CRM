@@ -52,6 +52,9 @@ export default async function LoginPage({
         <p className="mt-6 text-center text-xs text-slate-400">
           Accounts are provisioned by an administrator. There is no public signup.
         </p>
+        <p className="mt-3 text-center text-xs text-slate-500">
+          <a className="underline" href="/privacy">Privacy notice</a>
+        </p>
       </div>
     </main>
   )

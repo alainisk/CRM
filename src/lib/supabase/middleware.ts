@@ -39,6 +39,7 @@ const SCHEDULED_PATHS = [
  */
 const PUBLIC_PATHS = [
   '/login',
+  '/privacy',
   '/auth',
   '/api/health',
   '/unsubscribe',
